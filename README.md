@@ -16,6 +16,7 @@ to Platform Engineer. Each milestone introduces a new layer of the platform stac
 
 ## Architecture
 
+```
 ┌─────────────────────────────────────────┐
 │           kind cluster (local)          │
 │                                         │
@@ -29,6 +30,7 @@ to Platform Engineer. Each milestone introduces a new layer of the platform stac
 │                    │   ClusterIP     │  │
 │                    └─────────────────┘  │
 └─────────────────────────────────────────┘
+```
 
 **Current stack:**
 - Runtime: .NET 9 / ASP.NET Core
