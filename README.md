@@ -64,10 +64,9 @@ docker build -t hello-world:v1 src/HelloWorld/
 kind load docker-image hello-world:v1 --name dotnet-on-k8s
 ```
 
-Deploy:
+Deploy with Helm:
 ```bash
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
+helm install hello-world ./charts/hello-world
 ```
 
 Verify:
@@ -81,14 +80,18 @@ curl http://localhost:8080/weatherforecast
 ```
 dotnet-on-k8s/
 ├── src/
-│   └── HelloWorld/          # ASP.NET Core application
-│       ├── Dockerfile        # Multi-stage build
+│   └── HelloWorld/           # ASP.NET Core application
+│       ├── Dockerfile         # Multi-stage build
 │       └── HelloWorld.csproj
-├── k8s/
-│   ├── deployment.yaml       # Kubernetes Deployment
-│   └── service.yaml          # Kubernetes Service (ClusterIP)
+├── charts/
+│   └── hello-world/           # Helm chart
+│       ├── Chart.yaml          # Chart metadata
+│       ├── values.yaml         # Default values
+│       └── templates/
+│           ├── deployment.yaml
+│           └── service.yaml
 └── docs/
-    └── adr/                  # Architecture Decision Records
+    └── adr/                   # Architecture Decision Records
         └── ADR-001-local-kubernetes-kind.md
 ```
 
@@ -101,7 +104,7 @@ dotnet-on-k8s/
 ## Roadmap
 
 - [x] M1 — ASP.NET Core on local Kubernetes (kind)
-- [ ] M2 — Helm chart + Argo CD (GitOps)
+- [x] M2 — Helm chart + Argo CD (GitOps)
 - [ ] M3 — Observability: OpenTelemetry, Prometheus, Grafana
 - [ ] M4 — PostgreSQL on Kubernetes with persistent storage
 - [ ] M5 — Terraform module published to registry.terraform.io
