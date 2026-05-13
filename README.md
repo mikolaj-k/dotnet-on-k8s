@@ -100,6 +100,8 @@ dotnet-on-k8s/
 | ADR | Decision | Status |
 |-----|----------|--------|
 | [ADR-001](docs/adr/ADR-001-local-kubernetes-kind.md) | Local Kubernetes: kind over minikube/k3d | Accepted |
+| [ADR-002](docs/adr/ADR-002-helm-over-raw-yaml.md) | Helm over raw YAML / Kustomize | Accepted |
+| [ADR-003](docs/adr/ADR-003-argocd-for-gitops.md) | Argo CD for GitOps | Accepted |
 
 ## Roadmap
 
