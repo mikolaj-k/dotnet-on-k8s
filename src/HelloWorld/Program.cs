@@ -1,10 +1,17 @@
+using OpenTelemetry.Metrics;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add OpenTelemetry with Prometheus exporter
+builder.Services.AddOpenTelemetry()
+    .WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddPrometheusExporter());
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Expose /metrics endpoint for Prometheus
+app.MapPrometheusScrapingEndpoint();
 
 app.UseHttpsRedirection();
 
