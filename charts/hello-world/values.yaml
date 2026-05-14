@@ -1,6 +1,6 @@
 image:
   repository: hello-world
-  tag: v1
+  tag: v2
   pullPolicy: Never
 
 replicas: 2
