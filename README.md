@@ -19,14 +19,14 @@ to Platform Engineer. Each milestone introduces a new layer of the platform stac
 ```mermaid
 graph TB
     subgraph cluster["kind cluster (local)"]
-        subgraph default["namespace: default"]
+        subgraph ns_app["namespace: default"]
             app["hello-world<br/>ASP.NET Core + OpenTelemetry"]
         end
-        subgraph monitoring["namespace: monitoring"]
+        subgraph ns_mon["namespace: monitoring"]
             prom[Prometheus]
             graf[Grafana]
         end
-        subgraph argocd["namespace: argocd"]
+        subgraph ns_argo["namespace: argocd"]
             argo[Argo CD]
         end
     end
@@ -34,8 +34,8 @@ graph TB
 
     app -- "/metrics" --> prom
     prom --> graf
-    argo -- "deploys" --> default
-    argo -- "deploys" --> monitoring
+    argo -- "deploys" --> ns_app
+    argo -- "deploys" --> ns_mon
     git -- "watched by" --> argo
 ```
 
